@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "BcsdBeginnerWeek7Junho.sln"
+    "dotnet.defaultSolution": "BcsdBeginnerWeek7SingletonJunho.sln"
 }
