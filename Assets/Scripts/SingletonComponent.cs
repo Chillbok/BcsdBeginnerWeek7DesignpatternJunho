@@ -2,28 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SingletonComponent : MonoBehaviour
+public class SingletonClass
 {
-    //new 연산자를 통해서 생성되는 일반 C# 클래스의 객체와 달리 컴포넌트 클래스의 객체를 생성할 때는 게임 오브젝트를 생성한 다음에 AddComponent 함수를 이용해서 게임 오브젝트에 붙여줘야 한다.
-    void Start()
+    //클래스의 객체를 생성할 때 쓰이는 생성자
+    //모든 생성자를 private로 선언해서 함부로 접근하지 못하게 함
+    //객체를 하나만 생성 가능하도록 한정함
+    private SingletonClass() { } //private로 선언해 클래스 외부에서 함부로 객체를 만들 수 없게 만들기
+
+    private static SingletonClass instance; //이 변수에 넣어둔 객체만 꺼내서 사용할 예정
+    public static SingletonClass Instance //Instance 프로퍼티 호출
     {
-        //static으로 선언된 변수는 SingletonComponent의 객체가 몇 개이던지 이 변수는 단 하나로 모든 SingletonComponent들이 공유하게 된다.
-        //instance가 비어있으면 정식으로 생성된 SingletonComponent의 객체가 없다는 뜻이므로 새 인스턴스를 생성해서 채워주고
-        //이미 instance 안에 무언가가 채워져 있으면 그 이후에 생성된 객체는 부정한 객체이므로 삭제되어야 한다.
-        private static SingletonComponent instance;
-        
-        //싱글톤 프로퍼티 추가
-        //맨 앞글자를 대문자로 해서 private로 선언한 instance 변수와 차이 둠
-        public static SingletonComponent Instance
-        //이 instance는 클래스 내부와 외부, 모든 곳에서 호출하는 프로퍼티
+        get
         {
-            get //getter 만들기
+            //static인 instance 변수 비어있는지 검사
+            if(instance == null) //비어있는 경우
             {
-                //instance가 비어 있는지 검사
-                if (instance == null)
-                {
-                    var obj = FindObjectOfType
-                }
+                //새 객체 생성해서 instance 변수에 넣어주기
+                instance = new SingletonClass();
             }
         }
     }
